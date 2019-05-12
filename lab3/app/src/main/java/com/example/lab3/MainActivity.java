@@ -12,15 +12,11 @@ import java.io.ByteArrayOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    static TextView getUrl;
-    //static TextView title;
     static String titlename;
-    static ImageView imageView;
 
     public static DBhandler db;
     public static Bitmap bmap;
 
-    static boolean bool = false;
 
 
     public static void setImageBitmap(Bitmap imageBitmap) {
@@ -42,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = new DBhandler(this, "IMAGE_GALLERY", null, 1);
+        db = new DBhandler(this, "IMAGE_LIB", null, 1);
 
     }
 
@@ -50,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
     public static void insertIntoDb()
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+        bmap.compress(Bitmap.CompressFormat.JPEG, 15, stream);
         byte[] bArray = stream.toByteArray();
         db.insert(titlename, bArray);
         bmap.recycle();
-        bool =true;
     }
 
     public void download(View view) {
@@ -62,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void delete(View view) {
+    public void deleteimg(View view) {
         Intent intent = new Intent(MainActivity.this, DeleteImage.class);
         startActivity(intent);
     }

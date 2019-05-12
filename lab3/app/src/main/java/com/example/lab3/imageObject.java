@@ -9,10 +9,14 @@ public class imageObject {
 
     private String title;
     private byte[] bArray;
-    public imageObject(String name, String description, byte[] bArray)
+    private int id;
+
+    public imageObject(String title, byte[] bArray)
     {
         this.title = title;
         this.bArray = bArray;
+        this.id = id;
+
     }
 
     public String getTitle() {

@@ -60,22 +60,13 @@ public class download extends AppCompatActivity {
     }
 
 
-    public static byte[] imageViewToByte(Bitmap image) {
-
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 15, stream);
-        byte[] byteArray = stream.toByteArray();
-        return byteArray;
-    }
 
 
     public void downloadImage(View view) {
         Bitmap bmap;
-
         networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             ImageDownloader imageDownloader = new ImageDownloader();
-            //byte[] barr = new byte[0];
             try {
                 bmap = imageDownloader.execute(getUrl.getText().toString()).get();
             } catch (ExecutionException e) {
@@ -85,11 +76,12 @@ public class download extends AppCompatActivity {
             }
             MainActivity.titlename = (title.getText().toString());
             finish();
+            Toast.makeText(download.this, "DOWNLOAD SUCCESSFUL", Toast.LENGTH_LONG).show();
 
 
         }
         else{
-            Toast.makeText(download.this, "NO INTERNET CONNECTION", Toast.LENGTH_LONG).show();
+            Toast.makeText(download.this, "ERROR", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -10,12 +10,15 @@
         android:id="@+id/imagep"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:scaleType="center"
         app:srcCompat="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/imagetitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 
 </android.widget.LinearLayout>
