@@ -4,12 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.example.lab3.download.imageView;
+import static com.example.lab3.download.byteImage;
 
 
 class ImageDownloader extends AsyncTask<String, Void, Bitmap>{
@@ -26,6 +29,10 @@ class ImageDownloader extends AsyncTask<String, Void, Bitmap>{
 
             InputStream is = con.getInputStream();
             Bitmap bitmap = BitmapFactory.decodeStream(is);
+
+
+
+
             return bitmap;
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -38,6 +45,11 @@ class ImageDownloader extends AsyncTask<String, Void, Bitmap>{
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
-        download.imageView.setImageBitmap(bitmap);
+        MainActivity.setImageBitmap(bitmap);
+
+        MainActivity.insertIntoDb();
+
+
+
     }
 }
